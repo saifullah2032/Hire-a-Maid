@@ -42,6 +42,7 @@ onAuthStateChanged(auth, async (user) => {
         emailField.value = "You must be logged in to book a service";
         emailField.disabled = true;
         submitButton.disabled = true;
+        alert("You must be logged in to submit a request.");
     }
 });
 
