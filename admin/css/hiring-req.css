@@ -1,0 +1,158 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+body {
+    background: #fff;
+    color: #ddd;
+    min-height: 100vh;
+    display: flex;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 260px;
+    background: #1a1a1a;
+    padding: 20px;
+    color: white;
+    height: 100vh;
+}
+
+.profile {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.profile img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 3px solid #aaa;
+}
+
+.sidebar nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar nav ul li {
+    padding: 12px;
+    margin: 8px 0;
+    border-radius: 8px;
+    transition: background 0.3s ease;
+}
+
+.sidebar nav ul li a {
+    text-decoration: none;
+    color: #ddd;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.sidebar nav ul li:hover, .active {
+    background: #444;
+}
+
+/* Main Content */
+.main-content {
+    flex: 1;
+    padding: 20px;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    background: #1a1a1a;
+    padding: 15px 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(255, 255, 255, 0.1);
+}
+
+/* Cards */
+.dashboard {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.card {
+    background: #1a1a1a;
+    padding: 25px;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0px 5px 15px rgba(255, 255, 255, 0.1);
+}
+
+.card i {
+    font-size: 35px;
+    margin-bottom: 12px;
+    color: #bbb;
+}
+
+.card h2 {
+    font-size: 28px;
+    margin: 12px 0;
+    color: #ddd;
+}
+
+.card p {
+    font-size: 16px;
+    color: #ccc;
+}
+
+.card button {
+    margin-top: 12px;
+    padding: 10px 14px;
+    border: none;
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.card button:hover {
+    background: rgba(255, 255, 255, 0.4);
+}
+
+/* Card Colors */
+.blue {
+    background: #333;
+}
+
+.green {
+    background: #444;
+}
+
+.orange {
+    background: #555;
+}
+
+.red {
+    background: #666;
+}
+
+/* Back to Dashboard Button */
+.back-btn {
+    display: block;
+    margin: 30px auto;
+    padding: 10px 15px;
+    background: #444;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 5px;
+    width: 200px;
+    transition: background 0.3s ease;
+}
+
+.back-btn:hover {
+    background: #666;
+}

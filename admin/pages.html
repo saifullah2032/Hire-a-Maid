@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Pages - Maid Hiring Management System</title>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: "Poppins", sans-serif; }
+        body { background: #f4f6f9; color: #333; min-height: 100vh; display: flex; }
+
+        /* Sidebar */
+        .sidebar { 
+            width: 260px; 
+            background: #2c3e50 !important; /* Ensure background color applies */
+            padding: 20px; 
+            color: white; 
+            height: 100vh; 
+            position: fixed; /* Fixed sidebar */
+            left: 0;
+            top: 0;
+            overflow-y: auto;
+        }
+        .profile { text-align: center; margin-bottom: 20px; }
+        .profile img { width: 80px; height: 80px; border-radius: 50%; border: 3px solid white; }
+        .sidebar nav ul { list-style: none; padding: 0; margin-top: 20px; }
+        .sidebar nav ul li { padding: 12px; margin: 8px 0; border-radius: 8px; transition: background 0.3s ease; }
+        .sidebar nav ul li a { text-decoration: none; color: white; display: flex; align-items: center; gap: 10px; }
+        .sidebar nav ul li:hover, .active { background: #007bff; }
+
+        /* Main Content */
+        .main-content { 
+            flex: 1; 
+            padding: 20px; 
+            margin-left: 280px; /* Ensure content is pushed right of the sidebar */
+            width: calc(100% - 280px);
+        }
+
+        /* Header */
+        .header { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            background: white; 
+            padding: 15px 20px; 
+            border-radius: 10px; 
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1); 
+        }
+        .header h1 { font-size: 24px; margin: 0; }
+        .user-info { display: flex; align-items: center; gap: 10px; }
+        .user-info img { width: 40px; height: 40px; border-radius: 50%; border: 2px solid #007bff; }
+        .user-info span { font-size: 16px; font-weight: bold; color: #333; }
+
+        /* Content */
+        .content-container { 
+            background: white; 
+            padding: 20px; 
+            border-radius: 10px; 
+            margin-top: 20px; 
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1); 
+            text-align: center; 
+        }
+        .content-container h2 { margin-bottom: 15px; }
+
+        /* Image Styling */
+        .static-image { 
+            width: 80%; 
+            max-width: 600px; 
+            height: auto; 
+            border-radius: 10px; 
+            margin: 10px 0; 
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); 
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="profile">
+            <img src="user-profile.png" alt="Admin User">
+            <h3>Admin User</h3>
+            <p>admin@gmail.com</p>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                <li><a href="category.html"><i class="fas fa-list"></i> Category</a></li>
+                <li><a href="maid.html"><i class="fas fa-user"></i> Maid</a></li>
+                <li><a href="hiring-request.html"><i class="fas fa-file-alt"></i> Maid Hiring Request</a></li>
+                <li class="active"><a href="pages.html"><i class="fas fa-file"></i> Pages</a></li>
+                <li><a href="search.html"><i class="fas fa-search"></i> Search</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        
+        <!-- Header -->
+        <div class="header">
+            <h1>MAID HIRING MANAGEMENT SYSTEM - Pages</h1>
+            <div class="user-info">
+                <img src="user-profile.png" alt="Admin User">
+                <span>Admin User</span>
+            </div>
+        </div>
+
+        <!-- Content Section -->
+        <div class="content-container">
+            <h2>Know more</h2>
+            <img src="home.png" alt="Home page" class="static-image">
+            <img src="about.png" alt="About Us" class="static-image">
+            <img src="contact us.png" alt="Contact Us" class="static-image">
+            <img src="Hiring form.png" alt="Hiring Form" class="static-image">
+            
+            <h3>All pages</h3>
+            <p>Learn more about our maid hiring services.</p>
+        </div>
+        
+    </div>
+
+</body>
+</html>

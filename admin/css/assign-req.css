@@ -1,0 +1,47 @@
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: "Poppins", sans-serif; }
+body { background: #fff; color: #ddd; min-height: 100vh; display: flex; }
+
+/* Sidebar */
+.sidebar { width: 260px; background: #1a1a1a; padding: 20px; color: white; height: 100vh; }
+.profile { text-align: center; margin-bottom: 20px; }
+.profile img { width: 80px; height: 80px; border-radius: 50%; border: 3px solid #aaa; }
+.sidebar nav ul { list-style: none; padding: 0; }
+.sidebar nav ul li { padding: 12px; margin: 8px 0; border-radius: 8px; transition: background 0.3s ease; }
+.sidebar nav ul li a { text-decoration: none; color: #ccc; display: flex; align-items: center; gap: 10px; }
+.sidebar nav ul li:hover, .active { background: #444; }
+
+/* Main Content */
+.main-content { flex: 1; padding: 20px; }
+header { display: flex; justify-content: space-between; background: #333; padding: 15px 20px; border-radius: 10px; }
+
+/* Table Container */
+.table-container { background: #292929; padding: 20px; border-radius: 10px; margin-top: 20px; box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2); }
+
+/* Table */
+table { width: 100%; border-collapse: collapse; margin-top: 15px; }
+th, td { padding: 12px; border: 1px solid #444; text-align: left; }
+th { background: #555; color: white; }
+tr:nth-child(even) { background: #333; }
+tr:hover { background: #444; }
+
+/* Buttons */
+.btn { padding: 8px 12px; color: white; border-radius: 5px; text-decoration: none; font-size: 14px; font-weight: bold; }
+.btn-primary { background: #666; }
+.btn-primary:hover { background: #888; }
+
+/* Back Button */
+.back-btn {
+    display: block;
+    margin: 20px auto;
+    padding: 10px 15px;
+    background: #555;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 5px;
+    width: 220px;
+    transition: background 0.3s ease;
+}
+.back-btn:hover { background: #777; }

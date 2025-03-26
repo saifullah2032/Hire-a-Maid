@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Maid Hiring</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e3f2fd; /* Light Blue */
+            color: #2c3e50;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            padding: 30px;
+        }
+
+        /* Contact Section */
+        .contact-container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            width: 400px;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        h2 {
+            color: #ff6f00; /* Orange */
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #ff6f00; /* Orange Border */
+            border-radius: 5px;
+            font-size: 16px;
+            outline: none;
+        }
+
+        textarea {
+            height: 120px;
+            resize: none;
+        }
+
+        button {
+            background: #0288d1; /* Light Blue */
+            color: white;
+            font-size: 18px;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        button:hover {
+            background: #026aa7; /* Darker Blue */
+        }
+
+        /* FAQ Section */
+        .faq-container {
+            width: 500px;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: left;
+        }
+
+        .faq-item {
+            border-bottom: 1px solid #ddd;
+            padding: 10px 0;
+        }
+
+        .faq-question {
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            color: #ff6f00;
+        }
+
+        .faq-answer {
+            display: none;
+            padding-top: 5px;
+            color: #2c3e50;
+        }
+
+        .faq-question:hover {
+            color: #d35400;
+        }
+    </style>
+    <link rel="stylesheet" href="styles2.css">
+</head>
+<body>
+    <header>
+    <div class="logo">
+        <img src="logo.png" alt="House Maid Logo">
+    </div>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="hiringform.html">Find a Maid</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="#">Contact</a></li>
+            <li><a href="userprofile.html">User Profile</a></li>
+            <li><a href="logout.html">Logout</a></li> <!-- Added Logout Option -->
+        </ul>
+    </nav>
+</header>
+    
+   <!-- Contact Section -->
+<div class="contact-container">
+    <h2>Contact Us</h2>
+    <p>Have a question? Send us an email!</p>
+    <form class="contact-form" action="mailto:companyemail@example.com" method="post" enctype="text/plain">
+        <input type="text" name="name" placeholder="Your Name" required>
+        <input type="email" name="email" placeholder="Your Email" required>
+        <textarea name="message" placeholder="Your Message" required></textarea>
+        <button type="submit">Send Email</button>
+    </form>
+    <p><a href="home.html">Go to Home</a></p>
+</div>
+
+    <!-- FAQ Section -->
+    <div class="faq-container">
+        <h2>Frequently Asked Questions (FAQs)</h2>
+
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleAnswer(0)">How do I hire a maid? <span>+</span></div>
+            <div class="faq-answer">You can hire a maid by browsing our available professionals, checking their profiles, and booking an appointment online.</div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleAnswer(1)">Are the maids verified? <span>+</span></div>
+            <div class="faq-answer">Yes! All maids go through a background check and verification process before they are listed on our platform.</div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleAnswer(2)">What services do the maids offer? <span>+</span></div>
+            <div class="faq-answer">Our maids provide cleaning, cooking, babysitting, elderly care, and laundry services. You can choose based on your needs.</div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleAnswer(3)">What are the charges for hiring a maid? <span>+</span></div>
+            <div class="faq-answer">The charges vary based on experience, hours of service, and type of work. You can find detailed pricing on each maid's profile.</div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleAnswer(4)">Can I book a maid for a single day? <span>+</span></div>
+            <div class="faq-answer">Yes, you can hire a maid for a single day, weekly, or on a long-term contract depending on your requirements.</div>
+        </div>
+    </div>
+
+    <!-- JavaScript for FAQ Toggle -->
+    <script>
+        function toggleAnswer(index) {
+            var answers = document.querySelectorAll(".faq-answer");
+            var signs = document.querySelectorAll(".faq-question span");
+
+            if (answers[index].style.display === "block") {
+                answers[index].style.display = "none";
+                signs[index].textContent = "+";
+            } else {
+                answers.forEach(answer => answer.style.display = "none"); // Hide other answers
+                signs.forEach(sign => sign.textContent = "+");
+                answers[index].style.display = "block";
+                signs[index].textContent = "-";
+            }
+        }
+    </script>
+
+</body>
+</html>

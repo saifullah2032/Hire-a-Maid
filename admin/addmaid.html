@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Maid Form</title>
+    <link rel="stylesheet" href="styles3.css">
+</head>
+<body>
+    <!-- Top Navigation Bar -->
+    <header>
+        <div class="menu-icon">&#9776;</div>
+        <div class="title">MAID HIRING MANAGEMENT SYSTEM</div>
+        <div class="admin-profile">🔴 Admin</div>
+    </header>
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <p>Dashboard</p>
+        <p>Add Maid</p>
+        <p>View Maids</p>
+        <p>Settings</p>
+    </aside>
+
+    <!-- Main Content -->
+    <main>
+        <h1>Add Maid Form</h1>
+        <div class="form-container">
+            <h2>Add Maid</h2>
+            <form action="#" method="POST" enctype="multipart/form-data">
+                <label>Category Name:</label>
+                <select required>
+                    <option>Select Category</option>
+                    <option>Cleaning</option>
+                    <option>Cooking</option>
+                    <option>Babysitting</option>
+                </select>
+
+                <label>Maid ID:</label>
+                <input type="text" placeholder="Enter Maid ID" required>
+
+                <label>Name:</label>
+                <input type="text" placeholder="Enter Name" required>
+
+                <label>Email:</label>
+                <input type="email" placeholder="Enter Email" required>
+
+                <label>Gender:</label>
+                <select required>
+                    <option>Select Gender</option>
+                    <option>Male</option>
+                    <option>Female</option>
+                </select>
+
+                <label>Contact Number:</label>
+                <input type="tel" placeholder="Enter Contact Number" required>
+
+                <label>Experience:</label>
+                <input type="text" placeholder="Enter Experience in Years" required>
+
+                <label>Date of Birth:</label>
+                <input type="date" required>
+
+                <label>Address:</label>
+                <textarea placeholder="Enter Address" required></textarea>
+
+                <label>Background (if any):</label>
+                <textarea placeholder="Enter Background Details"></textarea>
+
+                <label>Maid File:</label>
+                <input type="file">
+
+                <label>ID Proof:</label>
+                <input type="file">
+
+                <button type="submit">Add</button>
+            </form>
+        </div>
+    </main>
+
+    <footer>
+        Maid Hiring Management System.
+    </footer>
+</body>
+</html>
