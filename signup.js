@@ -36,7 +36,7 @@ signupForm.addEventListener("submit", async (e) => {
         });
 
         alert("Signup successful! Redirecting...");
-        window.location.href = "home.html"; // Redirect to profile page
+        window.location.href = "index.html"; // Redirect to profile page
     } catch (error) {
         console.error("Signup Error:", error);
         
