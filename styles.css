@@ -1,96 +1,140 @@
-/* General Reset */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: Arial, sans-serif;
-}
-
-/* Body */
+/* General Styles */
 body {
-    background: linear-gradient(135deg, #007BFF, #FFA500);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
     margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f4f4f4;
 }
 
-/* Signup Container */
-.signup-container {
-    padding: 25px;
-    width: 450px;
-    text-align: center;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 15px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    backdrop-filter: blur(8px);
-}
-
-/* Heading */
-h2 {
-    font-size: 2em;
-    color: white;
-    margin-bottom: 15px;
-}
-
-/* Form */
-form {
+/* Container Layout */
+.container {
     display: flex;
-    flex-direction: column;
 }
 
-/* Labels */
-label {
+/* Sidebar */
+.sidebar {
+    width: 250px;
+    background: #1a2238;
     color: white;
-    text-align: left;
-    margin-bottom: 5px;
-    font-weight: bold;
+    padding: 20px;
+    height: 100vh;
+    position: fixed;
 }
 
-/* Input Fields */
-input {
-    width: 100%;
-    padding: 10px;
-    margin: 10px 0;
-    border-radius: 8px;
-    border: none;
-    font-size: 14px;
-    background: rgba(0, 0, 0, 0.4);
-    color: white;
-    box-sizing: border-box;
-    transition: background 0.3s ease, transform 0.2s;
+.profile {
+    text-align: center;
+    margin-bottom: 20px;
 }
 
-input:focus {
-    background: rgba(255, 255, 255, 0.2);
-    transform: scale(1.02);
+.profile img {
+    width: 60px;
+    border-radius: 50%;
 }
 
-/* Button */
-button {
-    width: 100%;
-    padding: 12px;
-    background: white;
-    color: black;
-    font-weight: bold;
-    border: none;
-    border-radius: 8px;
-    font-size: 16px;
+.profile h3 {
+    margin: 10px 0 5px;
+}
+
+.profile p {
+    font-size: 12px;
+    color: hsl(0, 6%, 85%);
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+nav ul li {
+    padding: 15px;
     cursor: pointer;
-    transition: background 0.3s ease, transform 0.2s;
+    display: flex;
+    align-items: center;
 }
 
-/* Button Hover */
-button:hover {
-    background: #007bff;
+nav ul li i {
+    margin-right: 10px;
+}
+
+nav ul li.active, nav ul li:hover {
+    background: #ff6b6b;
+    border-radius: 5px;
+}
+
+/* Main Content */
+.main-content {
+    margin-left: 270px;
+    padding: 20px;
+    width: calc(100% - 270px);
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    background: #112d4e;
     color: white;
-    transform: scale(1.05);
+    padding: 15px;
+    border-radius: 5px;
 }
 
-/* Error Message */
-#error-message {
-    color: red;
+.admin-profile {
+    display: flex;
+    align-items: center;
+}
+
+.admin-profile img {
+    width: 30px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+/* Dashboard Cards */
+.dashboard {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.card {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.card i {
+    font-size: 40px;
+    margin-bottom: 10px;
+}
+
+.card h2 {
+    margin: 5px 0;
+    font-size: 24px;
+}
+
+.card p {
+    color: #666;
     font-size: 14px;
     margin-bottom: 10px;
 }
+
+.card button {
+    background: #007bff;
+    color: white;
+    padding: 8px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.card button:hover {
+    background: #0056b3;
+}
+
+/* Colors */
+.purple i { color: #6a0dad; }
+.orange i { color: #ff8c00; }
+.yellow i { color: #ffcc00; }
+.green i { color: #28a745; }
+.red i { color: #dc3545; }
