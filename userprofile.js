@@ -29,7 +29,7 @@ onAuthStateChanged(auth, async (user) => {
         }
     } else {
         console.error("No user data found!");
-        window.location.href = "login.html"; // Redirect to login page if not logged in
+        window.location.href = "loginpage.html"; // Redirect to login page if not logged in
     }
 });
 
