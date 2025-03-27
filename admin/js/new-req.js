@@ -28,7 +28,7 @@ async function loadPendingRequests() {
         let found = false;
         querySnapshot.forEach((docSnap) => {
             const data = docSnap.data();
-            if (data.status && data.status.toLowerCase() === "Pending") {
+            if (status.toLowerCase() === "Pending") {
                 found = true;
 
                 const row = `
