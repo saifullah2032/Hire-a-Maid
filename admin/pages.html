@@ -69,7 +69,23 @@
             margin: 10px 0; 
             box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); 
         }
+        .logout-btn {
+    width: 100%;
+    padding: 12px;
+    margin-top: 20px;
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    background: tomato;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
 
+.logout-btn:hover {
+    background: #d63424; /* Darker shade of tomato */
+}
     </style>
 </head>
 <body>
@@ -89,6 +105,7 @@
                 <li><a href="hiring-request.html"><i class="fas fa-file-alt"></i> Maid Hiring Request</a></li>
                 <li class="active"><a href="pages.html"><i class="fas fa-file"></i> Pages</a></li>
                 <li><a href="search.html"><i class="fas fa-search"></i> Search</a></li>
+                <button class="logout-btn" onclick="logout()">Logout</button>
             </ul>
         </nav>
     </div>
@@ -118,6 +135,11 @@
         </div>
         
     </div>
-
+    <script>
+        function logout() {
+            window.location.href = "../loginpage.html";
+        }
+    </script>
+    
 </body>
 </html>
