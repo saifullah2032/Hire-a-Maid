@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Maid Hiring Management System || Maid Hiring Requests</title>
+    <link rel="stylesheet" href="css/hiring-req.css"> 
+
+</head>
+<body>
+    <div class="sidebar">
+        <div class="profile">
+            <img src="user-profile.png" alt="Admin User">
+            <h3>Admin User</h3>
+            <p>admin@gmail.com</p>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                <li><a href="category.html"><i class="fas fa-list"></i> Category</a></li>
+                <li><a href="maid.html"><i class="fas fa-user"></i> Maid</a></li>
+                <li class="active"><a href="hiring-request.html"><i class="fas fa-file-alt"></i> Maid Hiring Request</a></li>
+                <li><a href="pages.html"><i class="fas fa-file"></i> Pages</a></li>
+                <li><a href="search.html"><i class="fas fa-search"></i> Search</a></li>
+                <button class="logout-btn" onclick="logout()">Logout</button>
+            </ul>
+        </nav>
+    </div>
+
+    <div class="main-content">
+        <header>
+            <h1>MAID HIRING MANAGEMENT SYSTEM</h1>
+        </header>
+
+        <section class="dashboard">
+            <div class="card blue">
+                <h2 id="totalRequests">0</h2><p>All Requests</p>
+                <button onclick="location.href='all-requests.html'">View Details</button>
+            </div>
+            <div class="card green">
+                <h2 id="assignedRequests">0</h2><p>Assign Requests</p>
+                <button onclick="location.href='assign-request.html'">View Details</button>
+            </div>
+            <div class="card orange">
+                <h2 id="newRequests">0</h2><p>New Requests</p>
+                <button onclick="location.href='new-request.html'">View Details</button>
+            </div>
+            <div class="card red">
+                <h2 id="canceledRequests">0</h2><p>Canceled Requests</p>
+                <button onclick="location.href='cancel-request.html'">View Details</button>
+            </div>
+        </section>
+
+        <!-- Back to Dashboard Button -->
+        <a href="index.html" class="back-btn">⬅ Back to Dashboard</a>
+    </div>
+    <script type="module" src="js/hiring-req.js"></script>
+    <script>
+        function logout() {
+            window.location.href = "../loginpage.html";
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <title>Maid Hiring Management System || Cancel Request</title>
+      <link rel="stylesheet" href="css/canc-req.css"> 
+   </head>
+   <body>
+      <!-- Sidebar -->
+      <aside class="sidebar">
+         <div class="profile">
+            <img src="user-profile.png" alt="Admin User">
+            <h3>Admin User</h3>
+            <p>admin@gmail.com</p>
+         </div>
+         <nav>
+            <ul>
+               <li><a href="index.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+               <li><a href="category.html"><i class="fas fa-list"></i> Category</a></li>
+               <li><a href="maid.html"><i class="fas fa-user"></i> Maid</a></li>
+               <li class="active"><a href="hiring-request.html"><i class="fas fa-file-alt"></i> Maid Hiring Request</a></li>
+               <li><a href="pages.html"><i class="fas fa-file"></i> Pages</a></li>
+               <li><a href="search.html"><i class="fas fa-search"></i> Search</a></li>
+               <button class="logout-btn" onclick="logout()">Logout</button>
+            </ul>
+         </nav>
+      </aside>
+
+      <!-- Main Content -->
+      <main class="main-content">
+         <header>
+            <h1>MAID HIRING MANAGEMENT SYSTEM</h1>
+         </header>
+
+         <div class="page-title">
+            <h2>Cancelled Requests</h2>
+         </div>
+
+         <div class="table_section padding_infor_info">
+            <div class="table-responsive-sm">
+               <table class="table table-bordered">
+                  <thead>
+                     <tr>
+                        <th>Booking ID</th>
+                        <th>Name</th>
+                        <th>Mobile Number</th>
+                        <th>Email</th>
+                        <th>Booking Date</th>
+                        <th>Status</th>
+                        <th>Assign To</th>
+                        <th>Action</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     
+                  </tbody>
+               </table>
+            </div>
+
+            <!-- Back Button -->
+            <a href="hiring-request.html" class="back-btn">⬅ Back to Hiring Requests</a>
+         </div>
+      </main>
+      <script type="module" src="js/cancel-req.js"></script>
+      <script>
+         function logout() {
+             window.location.href = "../loginpage.html";
+         }
+     </script>
+   </body>
+</html>

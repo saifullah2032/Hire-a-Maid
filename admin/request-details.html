@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Request Details</title>
+    <link rel="stylesheet" href="css/req-det.css"> 
+
+</head>
+<body>
+    <div class="sidebar">
+        <div class="profile">
+            <img src="user-profile.png" alt="Admin User">
+            <h3>Admin User</h3>
+            <p>admin@gmail.com</p>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                <li><a href="category.html"><i class="fas fa-list"></i> Category</a></li>
+                <li><a href="maid.html"><i class="fas fa-user"></i> Maid</a></li>
+                <li class="active"><a href="hiring-request.html"><i class="fas fa-file-alt"></i> Maid Hiring Request</a></li>
+                <li><a href="pages.html"><i class="fas fa-file"></i> Pages</a></li>
+                <li><a href="search.html"><i class="fas fa-search"></i> Search</a></li>
+                <button class="logout-btn" onclick="logout()">Logout</button>
+            </ul>
+        </nav>
+    </div>
+
+    <div class="main-content">
+        <header>
+            <h1>MAID HIRING MANAGEMENT SYSTEM</h1>
+        </header>
+
+        <div class="details-container">
+            <h2>Booking Request Details</h2>
+            <table>
+                <tr><th>Booking ID</th><td id="bookingId">Loading...</td></tr>
+                <tr><th>Name</th><td id="customerName">Loading...</td></tr>
+                <tr><th>Mobile</th><td id="customerMobile">Loading...</td></tr>
+                <tr><th>Email</th><td id="customerEmail">Loading...</td></tr>
+                <tr><th>Date</th><td id="bookingDate">Loading...</td></tr>
+                <tr><th>Status</th><td id="bookingStatus">Loading...</td></tr>
+                <tr><th>Assigned Maid</th><td id="assignedMaid">Loading...</td></tr>
+            </table>
+
+            <!-- Back Button -->
+            <a href="#" id="backButton" class="back-btn">⬅ Back</a>
+        </div>
+    </div>
+
+    <script type="module" src="js/req-det.js"></script>
+    <script>
+        function logout() {
+            window.location.href = "../loginpage.html";
+        }
+    </script>
+    
+</body>
+</html>

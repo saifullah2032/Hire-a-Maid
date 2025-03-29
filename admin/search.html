@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Maid Hiring Management System || Search Booking Request</title>
+    <link rel="stylesheet" href="css/search.css"> 
+ 
+</head>
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="profile">
+            <img src="user-profile.png" alt="Admin User">
+            <h3>Admin User</h3>
+            <p>admin@gmail.com</p>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                <li><a href="category.html"><i class="fas fa-list"></i> Category</a></li>
+                <li><a href="maid.html"><i class="fas fa-user"></i> Maid</a></li>
+                <li><a href="hiring-request.html"><i class="fas fa-file-alt"></i> Maid Hiring Request</a></li>
+                <li><a href="pages.html"><i class="fas fa-file"></i> Pages</a></li>
+                <li class="active"><a href="search.html"><i class="fas fa-search"></i> Search</a></li>
+                <button class="logout-btn" onclick="logout()">Logout</button>
+            </ul>
+        </nav>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <header>
+            <h1>MAID HIRING MANAGEMENT SYSTEM</h1>
+            <div class="admin-profile">
+                <img src="user-profile.png" alt="Admin User">
+                <span>Admin User</span>
+            </div>
+        </header>
+
+        <div class="search-container">
+            <h2>Search Booking Request</h2>
+            <form>
+                <div class="form-group">
+                    <input type="text" id="searchInput" placeholder="Enter Booking ID or Name" required>
+                </div>
+                <button class="search-btn"  id="searchButton"type="submit">Search</button>
+            </form>
+
+            <a href="index.html" class="back-btn">⬅ Back to Dashboard</a>
+        </div>
+    </div>
+    <script type="module" src="js/search.js"></script>
+    <script>
+        function logout() {
+            window.location.href = "../loginpage.html";
+        }
+    </script>
+    
+</body>
+</html>

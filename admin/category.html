@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Category - Maid Hiring System</title>
+    <link rel="stylesheet" href="css/category.css"> 
+</head>
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="profile">
+            <img src="user-profile.png" alt="Admin User">
+            <h3>Admin User</h3>
+            <p>admin@gmail.com</p>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                <li class="active"><a href="category.html"><i class="fas fa-list"></i> Category</a></li>
+                <li><a href="maid.html"><i class="fas fa-user"></i> Maid</a></li>
+                <li><a href="hiring-request.html"><i class="fas fa-file-alt"></i> Maid Hiring Request</a></li>
+                <li><a href="pages.html"><i class="fas fa-file"></i> Pages</a></li>
+                <li><a href="search.html"><i class="fas fa-search"></i> Search</a></li>
+                <button class="logout-btn" onclick="logout()">Logout</button>
+            </ul>
+        </nav>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <header>
+            <h1>MAID HIRING MANAGEMENT SYSTEM</h1>
+            <div class="admin-profile">
+                <img src="user-profile.png" alt="Admin User">
+                <span>Admin User</span>
+            </div>
+        </header>
+
+        <h2 style="text-align: center; margin-top: 20px;">Add Category</h2>
+        <div class="form-container">
+            <form id="categoryForm">
+                <div class="form-group">
+                    <label for="categoryName">Category Name</label>
+                    <input type="text" id="categoryName" name="categoryName" placeholder="Enter Category Name" required>
+                </div>
+                <button class="submit-btn" type="submit">Add Category</button>
+            </form>
+            
+            <a href="index.html" class="back-btn">⬅ Back to Dashboard</a>
+        </div>
+    </div>
+    <script type="module" src="js/category.js"></script>
+    <script>
+        function logout() {
+            window.location.href = "../loginpage.html";
+        }
+    </script>
+</body>
+</html>

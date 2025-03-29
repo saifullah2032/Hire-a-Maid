@@ -1,0 +1,82 @@
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: "Poppins", sans-serif; }
+body { background: #f4f6f9; color: #333; min-height: 100vh; display: flex; }
+
+/* Sidebar */
+.sidebar { 
+    width: 260px; 
+    background: #2c3e50 !important; /* Ensure background color applies */
+    padding: 20px; 
+    color: white; 
+    height: 100vh; 
+    position: fixed; /* Fixed sidebar */
+    left: 0;
+    top: 0;
+    overflow-y: auto;
+}
+.profile { text-align: center; margin-bottom: 20px; }
+.profile img { width: 80px; height: 80px; border-radius: 50%; border: 3px solid white; }
+.sidebar nav ul { list-style: none; padding: 0; margin-top: 20px; }
+.sidebar nav ul li { padding: 12px; margin: 8px 0; border-radius: 8px; transition: background 0.3s ease; }
+.sidebar nav ul li a { text-decoration: none; color: white; display: flex; align-items: center; gap: 10px; }
+.sidebar nav ul li:hover, .active { background: #007bff; }
+
+/* Main Content */
+.main-content { 
+    flex: 1; 
+    padding: 20px; 
+    margin-left: 280px; /* Ensure content is pushed right of the sidebar */
+    width: calc(100% - 280px);
+}
+
+/* Header */
+.header { 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    background: white; 
+    padding: 15px 20px; 
+    border-radius: 10px; 
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1); 
+}
+.header h1 { font-size: 24px; margin: 0; }
+.user-info { display: flex; align-items: center; gap: 10px; }
+.user-info img { width: 40px; height: 40px; border-radius: 50%; border: 2px solid #007bff; }
+.user-info span { font-size: 16px; font-weight: bold; color: #333; }
+
+/* Content */
+.content-container { 
+    background: white; 
+    padding: 20px; 
+    border-radius: 10px; 
+    margin-top: 20px; 
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1); 
+    text-align: center; 
+}
+.content-container h2 { margin-bottom: 15px; }
+
+/* Image Styling */
+.static-image { 
+    width: 80%; 
+    max-width: 600px; 
+    height: auto; 
+    border-radius: 10px; 
+    margin: 10px 0; 
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); 
+}
+.logout-btn {
+width: 100%;
+padding: 12px;
+margin-top: 20px;
+font-size: 16px;
+font-weight: bold;
+color: white;
+background: tomato;
+border: none;
+border-radius: 8px;
+cursor: pointer;
+transition: background 0.3s ease;
+}
+
+.logout-btn:hover {
+background: #d63424; /* Darker shade of tomato */
+}

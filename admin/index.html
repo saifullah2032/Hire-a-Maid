@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="css/index.css"> 
+
+</head>
+<body>
+    <div class="sidebar">
+        <div class="profile">
+            <img src="user-profile.png" alt="Admin User">
+            <h3>Admin User</h3>
+            <p>admin@gmail.com</p>
+        </div>
+        <nav>
+            <ul>
+                <li class="active"><a href="index.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                <li><a href="category.html"><i class="fas fa-list"></i> Category</a></li>
+                <li><a href="maid.html"><i class="fas fa-user"></i> Maid</a></li>
+                <li><a href="hiring-request.html"><i class="fas fa-file-alt"></i> Maid Hiring Request</a></li>
+                <li><a href="pages.html"><i class="fas fa-file"></i> Pages</a></li>
+                <li><a href="search.html"><i class="fas fa-search"></i> Search</a></li>
+                <button class="logout-btn" onclick="logout()">Logout</button>
+
+            </ul>
+        </nav>
+    
+        
+    </div>
+
+    <div class="main-content">
+        <header>
+            <h1>MAID HIRING MANAGEMENT SYSTEM</h1>
+            <div class="admin-profile">
+                <img src="user-profile.png" alt="Admin User">
+                <span>Admin User</span>
+            </div>
+        </header>
+
+        <section class="dashboard">
+            <div class="card purple">
+                <i class="fas fa-file-alt"></i>
+                <h2 id="totalCategory">0</h2>
+                <p>Total Category</p>
+            </div>
+        
+            <div class="card orange">
+                <i class="fas fa-users"></i>
+                <h2 id="totalMaids">0</h2>
+                <p>Listed Maids</p>
+            </div>
+        
+            <div class="card yellow">
+                <i class="fas fa-file-alt"></i>
+                <h2 id="newRequest">0</h2>
+                <p>New Request</p>
+            </div>
+        
+            <div class="card green">
+                <i class="fas fa-file-alt"></i>
+                <h2 id="assignRequest">0</h2>
+                <p>Assign Request</p>
+            </div>
+        
+            <div class="card red">
+                <i class="fas fa-times-circle"></i>
+                <h2 id="cancelRequest">0</h2>
+                <p>Canceled / Rejected Requests</p>
+            </div>
+        
+            <div class="card purple">
+                <i class="fas fa-file-alt"></i>
+                <h2 id="totalRequests">0</h2>
+                <p>Total Requests</p>
+            </div>
+        </section>
+        
+    </div>
+    <script type="module" src="js/index.js"></script>
+    <script>
+        function logout() {
+            window.location.href = "../loginpage.html";
+        }
+    </script>
+    
+</body>
+</html>
