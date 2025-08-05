@@ -1,4 +1,4 @@
-// Import Firebase modules (only needed for normal users)
+// Import Firebase modules
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-app.js";
 import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-auth.js";
 import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-firestore.js";
@@ -15,12 +15,12 @@ const firebaseConfig = {
     measurementId: "G-48143C3T7C"
 };
 
-// Initialize Firebase (only for normal users)
+// Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
 
-// Get form elements
+// DOM Elements
 const loginForm = document.getElementById("loginForm");
 const roleSelect = document.getElementById("role");
 const usernameInput = document.getElementById("username");
@@ -28,44 +28,40 @@ const passwordInput = document.getElementById("password");
 const submitButton = document.querySelector("button");
 const errorMessage = document.getElementById("error-message");
 
-// Enable/disable login fields based on role selection
-roleSelect.addEventListener("change", function () {
+// Enable inputs when role is selected
+roleSelect.addEventListener("change", () => {
     const isRoleSelected = roleSelect.value !== "";
     usernameInput.disabled = !isRoleSelected;
     passwordInput.disabled = !isRoleSelected;
     submitButton.disabled = !isRoleSelected;
 });
 
-// Login event listener
-loginForm.addEventListener("submit", async (event) => {
-    event.preventDefault();
+// Login logic
+loginForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
 
     const email = usernameInput.value.trim();
     const password = passwordInput.value;
     const role = roleSelect.value;
 
-    errorMessage.textContent = ""; // Clear previous errors
+    errorMessage.textContent = ""; // Reset error message
 
-    // 🔹 **Admin Login - No Firebase**
     if (role === "Admin") {
+        // Admin hardcoded login
         if (email === "admin@example.com" && password === "admin@123") {
-            // ✅ Redirect to Admin Dashboard without any alert
+            localStorage.setItem("isLoggedIn", "true");
             window.location.href = "admin/index.html";
-            return;
         } else {
-            // ❌ Show error if admin credentials are wrong
             errorMessage.textContent = "Invalid admin credentials!";
-            return;
         }
+        return;
     }
 
-    else{
-    // 🔹 **Authenticate Normal Users Using Firebase Auth**
+    // Firebase Auth for normal users
     try {
         const userCredential = await signInWithEmailAndPassword(auth, email, password);
         const user = userCredential.user;
 
-        // Fetch user data from Firestore using **user UID**
         const userDocRef = doc(db, "users", user.uid);
         const userDoc = await getDoc(userDocRef);
 
@@ -75,13 +71,15 @@ loginForm.addEventListener("submit", async (event) => {
         }
 
         const userData = userDoc.data();
+
+        // Store session data
+        localStorage.setItem("isLoggedIn", "true");
         localStorage.setItem("user", JSON.stringify(userData));
 
-        // ✅ Redirect to Profile page for normal users
+        // Redirect to user profile
         window.location.href = "userprofile.html";
-    } catch (error) {
-        console.error("Login Error:", error);
+    } catch (err) {
+        console.error("Login Error:", err);
         errorMessage.textContent = "Invalid credentials. Please try again.";
-    }
     }
 });
