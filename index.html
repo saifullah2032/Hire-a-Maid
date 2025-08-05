@@ -5,149 +5,200 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Home - Maid Hiring</title>
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+/* ==== General Reset & Body ==== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #f5f5f5;
-      color: #333;
-    }
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f5f5f5;
+  color: #333;
+  position: relative;
+  overflow-x: hidden;
+}
 
-    header {
-      background: #ffffff;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 15px 30px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-    }
+/* ==== Header / Navbar ==== */
+header {
+  background: #ffffff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 30px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
 
-    .logo img {
-      height: 50px;
-      width: 150px;
-      object-fit: contain;
-    }
+.logo img {
+  height: 50px;
+  width: 150px;
+  object-fit: contain;
+}
 
-    nav ul {
-      list-style: none;
-      display: flex;
-      gap: 20px;
-    }
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+}
 
-    nav ul li a {
-      text-decoration: none;
-      color: #333;
-      font-weight: 500;
-      transition: all 0.2s ease-in-out;
-    }
+nav ul li a {
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+  transition: all 0.2s ease-in-out;
+}
 
-    nav ul li a:hover {
-      color: #007bff;
-      transform: scale(1.05);
-    }
+nav ul li a:hover {
+  color: #007bff;
+  transform: scale(1.05);
+}
 
-    .hero {
-      position: relative;
-      height: 60vh;
-      background: url('banner.png') no-repeat center center/cover;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
+/* ==== Hero Section ==== */
+.hero {
+  position: relative;
+  height: 60vh;
+  background: url('banner.png') no-repeat center center/cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
-    .overlay {
-      background: rgba(0, 0, 0, 0.55);
-      padding: 40px;
-      border-radius: 10px;
-      text-align: center;
-      color: white;
-    }
+.overlay {
+  background: rgba(0, 0, 0, 0.55);
+  padding: 40px;
+  border-radius: 10px;
+  text-align: center;
+  color: white;
+}
 
-    .overlay h1 {
-      font-size: 2.8rem;
-      font-weight: bold;
-    }
+.overlay h1 {
+  font-size: 2.8rem;
+  font-weight: bold;
+}
 
-    .cta {
-      margin-top: 20px;
-      display: inline-block;
-      padding: 12px 24px;
-      background-color: #ff6f00;
-      color: white;
-      text-decoration: none;
-      border-radius: 8px;
-      font-weight: bold;
-      transition: background 0.3s;
-    }
+.cta {
+  margin-top: 20px;
+  display: inline-block;
+  padding: 12px 24px;
+  background-color: #ff6f00;
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: bold;
+  transition: background 0.3s;
+}
 
-    .cta:hover {
-      background-color: #e65100;
-    }
+.cta:hover {
+  background-color: #e65100;
+}
 
-    .grid {
-      padding: 60px 20px;
-      background-color: #ffffff;
-    }
+/* ==== Bubble Background for Cards ==== */
+.grid {
+  padding: 80px 20px;
+  background: linear-gradient(to bottom right, #f0f9ff, #ffffff);
+  position: relative;
+  overflow: hidden;
+}
 
-    .container {
-      max-width: 1200px;
-      margin: auto;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 40px;
-    }
+.grid::before {
+  content: '';
+  position: absolute;
+  top: -100px;
+  left: -50px;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(255, 203, 239, 0.3), transparent 70%);
+  animation: floatBubble 12s ease-in-out infinite;
+  border-radius: 50%;
+  z-index: 0;
+}
 
-    .card {
-      background: linear-gradient(135deg, #ffffff, #f9f9f9);
-      padding: 30px 20px;
-      border-radius: 15px;
-      text-align: center;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
+.grid::after {
+  content: '';
+  position: absolute;
+  bottom: -80px;
+  right: -60px;
+  width: 250px;
+  height: 250px;
+  background: radial-gradient(circle, rgba(203, 255, 245, 0.3), transparent 70%);
+  animation: floatBubble 15s ease-in-out infinite reverse;
+  border-radius: 50%;
+  z-index: 0;
+}
 
-    .card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
-    }
+@keyframes floatBubble {
+  0%, 100% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(-30px) scale(1.1);
+  }
+}
 
-    .icon {
-      font-size: 3rem;
-      margin-bottom: 15px;
-    }
+/* ==== Cards Container ==== */
+.container {
+  position: relative;
+  z-index: 1;
+  max-width: 1200px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 40px;
+}
 
-    .card h3 {
-      margin-bottom: 10px;
-      font-size: 1.5rem;
-      color: #2c3e50;
-    }
+/* ==== Card Style ==== */
+.card {
+  background: linear-gradient(145deg, #ffffff, #f0f0f0);
+  padding: 30px 20px;
+  border-radius: 20px;
+  text-align: center;
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.08);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
 
-    .card p {
-      font-size: 1rem;
-      color: #666;
-    }
+.card:hover {
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 0 20px 35px rgba(0, 0, 0, 0.12);
+}
 
-    @media (max-width: 768px) {
-      header {
-        flex-direction: column;
-        align-items: flex-start;
-      }
+.icon {
+  font-size: 3rem;
+  margin-bottom: 15px;
+}
 
-      nav ul {
-        flex-direction: column;
-        width: 100%;
-        margin-top: 10px;
-        gap: 10px;
-      }
+.card h3 {
+  margin-bottom: 10px;
+  font-size: 1.5rem;
+  color: #2c3e50;
+}
 
-      .overlay h1 {
-        font-size: 2rem;
-      }
-    }
+.card p {
+  font-size: 1rem;
+  color: #666;
+}
+
+/* ==== Responsive ==== */
+@media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  nav ul {
+    flex-direction: column;
+    width: 100%;
+    margin-top: 10px;
+    gap: 10px;
+  }
+
+  .overlay h1 {
+    font-size: 2rem;
+  }
+}
+
   </style>
 </head>
 <body>
@@ -242,3 +293,4 @@
 
 </body>
 </html>
+
