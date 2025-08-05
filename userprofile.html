@@ -3,189 +3,181 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>User Details & Booked Maids</title>
-
+  <title>User Profile - The Maid Dispatch</title>
+  <link rel="stylesheet" href="styles1.css" />
   <style>
-    :root {
-      --primary-color: #007bff;
-      --primary-hover: #0056b3;
-      --light-bg: #f4f4f4;
-      --white: #ffffff;
-      --text-dark: #333;
-    }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
     body {
       font-family: Arial, sans-serif;
-      background-color: var(--light-bg);
-      padding: 2rem;
-      color: var(--text-dark);
+      background-color: #f5f5f5;
+      color: #333;
     }
 
     .container {
-      max-width: 1200px;
-      margin: auto;
-      background: var(--white);
-      padding: 2rem;
+      max-width: 1100px;
+      margin: 40px auto;
+      background: white;
       border-radius: 10px;
-      box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+      padding: 30px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.08);
     }
 
     h2 {
       text-align: center;
-      margin-bottom: 1.5rem;
-      font-size: 1.75rem;
-    }
-
-    .user-details {
-      margin-bottom: 2rem;
+      margin-bottom: 30px;
+      font-size: 1.8rem;
     }
 
     .user-details p {
-      margin: 0.5rem 0;
       font-size: 1.1rem;
-    }
-
-    #logout {
-      margin-top: 1rem;
-      padding: 0.6rem 1rem;
-      background: var(--primary-color);
-      color: white;
-      border: none;
-      border-radius: 5px;
-      font-weight: bold;
-      cursor: pointer;
-    }
-
-    #logout:hover {
-      background: var(--primary-hover);
-    }
-
-    .table-container {
-      overflow-x: auto;
-      margin-top: 1rem;
+      margin: 10px 0;
     }
 
     table {
       width: 100%;
+      margin-top: 20px;
       border-collapse: collapse;
-      margin-top: 1rem;
     }
 
     th, td {
-      padding: 0.75rem;
+      padding: 12px;
       border: 1px solid #ddd;
       text-align: left;
-      font-size: 0.95rem;
     }
 
     th {
-      background: var(--primary-color);
+      background-color: #007bff;
       color: white;
     }
 
     tr:nth-child(even) {
-      background: #f9f9f9;
+      background-color: #f9f9f9;
     }
 
     tr:hover {
-      background: #f1f1f1;
+      background-color: #f1f1f1;
     }
 
-    .home-btn, .back-btn {
-      display: inline-block;
-      text-align: center;
-      padding: 0.7rem 1.2rem;
-      margin-top: 2rem;
-      background: var(--primary-color);
+    button, .home-btn {
+      margin-top: 20px;
+      background-color: #007bff;
       color: white;
-      text-decoration: none;
-      border-radius: 5px;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 6px;
       font-weight: bold;
-      transition: background 0.3s ease;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
     }
 
-    .home-btn:hover, .back-btn:hover {
-      background: var(--primary-hover);
+    button:hover, .home-btn:hover {
+      background-color: #0056b3;
     }
 
-    @media (max-width: 768px) {
-      body {
-        padding: 1rem;
-      }
-
-      .container {
-        padding: 1.2rem;
-      }
-
-      table {
-        font-size: 0.85rem;
-      }
-
-      .home-btn, .back-btn {
-        width: 100%;
-        padding: 0.8rem;
-      }
-
-      h2 {
-        font-size: 1.5rem;
-      }
+    header {
+      background: #ffffff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 30px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
     }
 
-    @media (max-width: 480px) {
-      .user-details p {
-        font-size: 1rem;
-      }
+    .logo img {
+      height: 50px;
+    }
 
-      th, td {
-        padding: 0.5rem;
-      }
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+    }
+
+    nav ul li a:hover {
+      color: #007bff;
     }
   </style>
 </head>
 <body>
+
+  <!-- Navigation Bar -->
+  <header>
+    <div class="logo">
+      <img src="logo.png" alt="House Maid Logo" />
+    </div>
+    <nav>
+      <ul id="nav-links"></ul>
+    </nav>
+  </header>
+
   <div class="container">
-    
     <div class="user-details">
       <h2>User Profile</h2>
       <p><strong>Name:</strong> <span id="name"></span></p>
       <p><strong>Age:</strong> <span id="age"></span></p>
       <p><strong>Email:</strong> <span id="email"></span></p>
-      <button id="logout">Logout</button>
     </div>
 
     <h2>Booked Maids</h2>
-    <div class="table-container">
-      
-      <table>
-        <thead>
-          <tr>
-            <th>Booking ID</th>
-            <th>Name</th>
-            <th>Mobile</th>
-            <th>Email</th>
-            <th>Date</th>
-            <th>Status</th>
-            <th>Assign To</th>
-            <th>Action</th>
-            <th>Change Status</th>
-          </tr>
-        </thead>
-        <tbody>
-          <!-- Data will be inserted dynamically here -->
-        </tbody>
-      </table>
-    </div>
+    <table>
+      <thead>
+        <tr>
+          <th>Booking ID</th>
+          <th>Name</th>
+          <th>Mobile</th>
+          <th>Email</th>
+          <th>Date</th>
+          <th>Status</th>
+          <th>Assign To</th>
+          <th>Action</th>
+          <th>Change Status</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
 
-    <a href="index.html" class="home-btn">Go Back to Home</a>
+    <button id="logout">Logout</button>
+    <a href="index.html" class="home-btn">Back to Home</a>
   </div>
+
+  <script>
+    const navLinks = document.getElementById("nav-links");
+    const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
+
+    if (isLoggedIn) {
+      navLinks.innerHTML = `
+        <li><a href="index.html">Home</a></li>
+        <li><a href="hiringform.html">Find a Maid</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="userprofile.html">User Profile</a></li>
+        <li><a href="#" id="logoutBtn">Logout</a></li>
+      `;
+    } else {
+      navLinks.innerHTML = `
+        <li><a href="index.html">Home</a></li>
+        <li><a href="hiringform.html">Find a Maid</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="loginpage.html">Login</a></li>
+      `;
+    }
+
+    document.addEventListener("click", function (e) {
+      if (e.target && e.target.id === "logoutBtn") {
+        localStorage.setItem("isLoggedIn", "false");
+        localStorage.removeItem("user");
+        location.reload();
+      }
+    });
+  </script>
 
   <script type="module" src="userprofile.js"></script>
 </body>
 </html>
-
