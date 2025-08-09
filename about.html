@@ -5,17 +5,54 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Happy Clients - Testimonials</title>
   <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
-  <link rel="stylesheet" href="styles.css" /> <!-- Your main shared CSS -->
   <style>
+    /* ==== Global Styles ==== */
     body {
-      font-family: Arial, sans-serif;
-      background-color: #f0f8ff;
-      color: #2c3e50;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #e3f2fd;
       margin: 0;
       padding: 0;
+      color: #2c3e50;
     }
 
-    /* Testimonial Section */
+    /* Navbar */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: linear-gradient(90deg, #0288d1, #26c6da);
+      padding: 1rem 2rem;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .logo img { height: 50px; }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
+      padding: 0;
+      margin: 0;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      font-weight: 500;
+      color: white;
+      padding: 8px 12px;
+      border-radius: 6px;
+      transition: background 0.3s, transform 0.2s;
+    }
+
+    nav ul li a:hover {
+      background: rgba(255,255,255,0.2);
+      transform: translateY(-2px);
+    }
+
+    /* ==== Testimonials Section ==== */
     .testimonial-heading {
       display: inline-block;
       background: linear-gradient(90deg, #2e7d32, #4caf50);
@@ -23,11 +60,12 @@
       padding: 10px 20px;
       border-radius: 10px;
       font-size: 1.5em;
-      margin: 40px 0 20px;
+      margin: 40px auto 20px;
+      text-align: center;
     }
 
     .carousel-container {
-      max-width: 90%;
+      max-width: 1000px;
       margin: auto;
       padding: 20px;
     }
@@ -37,39 +75,31 @@
       overflow: hidden;
     }
 
-    .swiper-wrapper {
-      display: flex;
-    }
-
-    .swiper-slide {
-      width: auto;
-      flex-shrink: 0;
-    }
-
-    /* Card Gradient + Bubble Effect */
+    /* Card Style */
     .testimonial-card {
       padding: 20px;
-      background: linear-gradient(145deg, #e8f5e9, #c8e6c9);
-      border-radius: 15px;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      background: radial-gradient(circle at top left, rgba(255,255,255,1), rgba(230,247,255,0.8));
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
       min-width: 300px;
       text-align: center;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
       position: relative;
       overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      opacity: 0; /* for animation */
+      transform: translateY(30px);
     }
 
     .testimonial-card::before {
       content: "";
       position: absolute;
-      width: 200%;
-      height: 200%;
-      top: -50%;
-      left: -50%;
-      background: radial-gradient(circle, rgba(255,255,255,0.4) 10%, transparent 30%);
-      transform: translate(0, 0);
-      transition: transform 0.5s ease;
-      pointer-events: none;
+      top: -50px;
+      right: -50px;
+      width: 150px;
+      height: 150px;
+      background: rgba(2,136,209,0.1);
+      border-radius: 50%;
+      z-index: 0;
     }
 
     .testimonial-card:hover {
@@ -77,43 +107,79 @@
       box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
     }
 
-    .testimonial-card:hover::before {
-      transform: translate(30px, 30px);
-    }
-
+    /* Avatar */
     .avatar {
       width: 80px;
       height: 80px;
       border-radius: 50%;
       margin-bottom: 10px;
       border: 3px solid #5d4037;
+      position: relative;
+      z-index: 1;
     }
 
     .testimonial-text {
       font-size: 1.1em;
       color: #34495e;
       margin-bottom: 10px;
+      position: relative;
+      z-index: 1;
     }
 
+    /* Go Back Button */
     .go-back-btn {
       margin: 30px auto 50px;
       padding: 10px 20px;
-      background-color: #0077b6;
+      background: linear-gradient(90deg, #0288d1, #26c6da);
       color: white;
       text-decoration: none;
       border-radius: 5px;
       font-size: 1.2em;
       display: inline-block;
+      transition: transform 0.3s, background 0.3s;
     }
 
     .go-back-btn:hover {
-      background-color: #005f8a;
+      transform: translateY(-2px);
+      background: linear-gradient(90deg, #026aa7, #00acc1);
     }
+
+    /* ==== Animation ==== */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .show-card {
+      animation: fadeInUp 0.8s ease forwards;
+    }
+
+    @media (max-width: 768px) {
+      nav ul {
+        flex-direction: column;
+        background: linear-gradient(90deg, #0288d1, #26c6da);
+        position: absolute;
+        top: 70px;
+        right: 0;
+        width: 200px;
+        display: none;
+      }
+      nav ul.active { display: flex; }
+      .menu-toggle { display: block; cursor: pointer; font-size: 1.5rem; color: white; }
+    }
+
+    @media (min-width: 769px) { .menu-toggle { display: none; } }
   </style>
 </head>
-
 <body>
-  <!-- Navbar (matches index.html) -->
+
+  <!-- Navbar -->
   <header>
     <div class="logo">
       <img src="logo.png" alt="House Maid Logo" />
@@ -123,12 +189,11 @@
     </nav>
   </header>
 
-  <!-- Testimonials Section -->
+  <!-- Testimonials -->
   <div class="carousel-container">
     <h2 class="testimonial-heading">Happy Clients</h2>
     <div class="swiper-container">
       <div class="swiper-wrapper">
-        <!-- Client cards -->
         <div class="swiper-slide">
           <div class="testimonial-card">
             <img class="avatar" src="https://randomuser.me/api/portraits/women/45.jpg" alt="Sophia Patel" />
@@ -136,7 +201,13 @@
             <p><strong>- Sophia Patel</strong></p>
           </div>
         </div>
-        <!-- Add more testimonial cards here -->
+        <div class="swiper-slide">
+          <div class="testimonial-card">
+            <img class="avatar" src="https://randomuser.me/api/portraits/men/23.jpg" alt="Rajesh Kumar" />
+            <p class="testimonial-text">"Exceptional service and friendly staff. My home has never been this clean!"</p>
+            <p><strong>- Rajesh Kumar</strong></p>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -145,42 +216,35 @@
 
   <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
   <script>
+    // Swiper Carousel
     var swiper = new Swiper(".swiper-container", {
       loop: true,
-      autoplay: {
-        delay: 0,
-        disableOnInteraction: false,
-      },
+      autoplay: { delay: 0, disableOnInteraction: false },
       speed: 20000,
       slidesPerView: "auto",
       spaceBetween: 15,
       centeredSlides: false,
     });
 
-    // Dynamic Navigation
+    // Navbar dynamic state
     const navLinks = document.getElementById("nav-links");
     const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
+    navLinks.innerHTML = isLoggedIn ? `
+      <li><a href="index.html">Home</a></li>
+      <li><a href="hiringform.html">Find a Maid</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="userprofile.html">User Profile</a></li>
+      <li><a href="#" id="logoutBtn">Logout</a></li>
+    ` : `
+      <li><a href="index.html">Home</a></li>
+      <li><a href="hiringform.html">Find a Maid</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="loginpage.html">Login</a></li>
+    `;
 
-    if (isLoggedIn) {
-      navLinks.innerHTML = `
-        <li><a href="index.html">Home</a></li>
-        <li><a href="hiringform.html">Find a Maid</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="contact.html">Contact</a></li>
-        <li><a href="userprofile.html">User Profile</a></li>
-        <li><a href="#" id="logoutBtn">Logout</a></li>
-      `;
-    } else {
-      navLinks.innerHTML = `
-        <li><a href="index.html">Home</a></li>
-        <li><a href="hiringform.html">Find a Maid</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="contact.html">Contact</a></li>
-        <li><a href="loginpage.html">Login</a></li>
-      `;
-    }
-
-    // Logout Handler
+    // Logout
     document.addEventListener("click", function (e) {
       if (e.target && e.target.id === "logoutBtn") {
         localStorage.setItem("isLoggedIn", "false");
@@ -188,6 +252,19 @@
         location.reload();
       }
     });
+
+    // Animate testimonials when in view
+    const cards = document.querySelectorAll(".testimonial-card");
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("show-card");
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.2 });
+
+    cards.forEach(card => observer.observe(card));
   </script>
 </body>
 </html>
