@@ -19,42 +19,41 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const auth = getAuth(app);
 
-// Select form and fields
+// Elements
 const hiringForm = document.querySelector("form");
 const emailField = document.getElementById("email");
 const serviceDropdown = document.getElementById("service");
 const submitButton = document.querySelector("button[type='submit']");
+const qrContainer = document.getElementById("qrContainer");
+const qrCodeDiv = document.getElementById("qrcode");
+const confirmPaymentBtn = document.getElementById("confirmPayment");
+const txnIdInput = document.getElementById("txnIdInput");
 
-// Disable form by default
+// Disable submit by default
 submitButton.disabled = true;
 
-// Check if user is logged in
+// Auth state
 onAuthStateChanged(auth, async (user) => {
     if (user) {
-        console.log("User is logged in:", user.email);
-        emailField.value = user.email; // Auto-fill email field
-        submitButton.disabled = false; // Enable submit button
-
-        // Fetch categories for the service dropdown
+        emailField.value = user.email;
+        submitButton.disabled = false;
         fetchCategories();
     } else {
-        console.log("User is not logged in. Submit button disabled.");
-        emailField.value = "You must be logged in to book a service";
+        emailField.value = "Login required to book a service";
         emailField.disabled = true;
         submitButton.disabled = true;
-        alert("You must be logged in to submit a request.");
+        alert("Please login to submit a request.");
     }
 });
 
-// Function to fetch service categories from Firestore
+// Fetch service categories
 async function fetchCategories() {
     try {
         const categoryCollection = collection(db, "category");
         const querySnapshot = await getDocs(categoryCollection);
-        serviceDropdown.innerHTML = '<option value="">Select a Service</option>'; // Clear and add default option
-
-        querySnapshot.forEach((doc) => {
-            const category = doc.data().name;
+        serviceDropdown.innerHTML = '<option value="">Select a Service</option>';
+        querySnapshot.forEach((docSnap) => {
+            const category = docSnap.data().name;
             const option = document.createElement("option");
             option.value = category;
             option.textContent = category;
@@ -65,64 +64,88 @@ async function fetchCategories() {
     }
 }
 
-// Function to generate the next Booking ID
+// Generate next booking ID
 async function getNextBookingID() {
     const bookingCollection = collection(db, "form-fill");
-    const q = query(bookingCollection, orderBy("bookingID", "desc"), limit(1)); // Get last booking ID
+    const q = query(bookingCollection, orderBy("bookingID", "desc"), limit(1));
     const querySnapshot = await getDocs(q);
 
     if (!querySnapshot.empty) {
-        let lastID = querySnapshot.docs[0].id; // e.g., "BK002"
-        let lastNumber = parseInt(lastID.replace("BK", ""), 10); // Extract number part (2)
-        let nextNumber = lastNumber + 1; // Increment by 1
-        return `BK${String(nextNumber).padStart(3, "0")}`; // Format as "BK003"
+        let lastID = querySnapshot.docs[0].id;
+        let lastNumber = parseInt(lastID.replace("BK", ""), 10);
+        let nextNumber = lastNumber + 1;
+        return `BK${String(nextNumber).padStart(3, "0")}`;
     } else {
-        return "BK001"; // If no documents exist, start with BK001
+        return "BK001";
     }
 }
 
-// Event listener for form submission
+// Show QR code after form fill
 hiringForm.addEventListener("submit", async (event) => {
-    event.preventDefault(); // Prevents page refresh
+    event.preventDefault();
 
-    // Ensure user is logged in before allowing submission
     const user = auth.currentUser;
     if (!user) {
-        alert("You must be logged in to submit a request.");
+        alert("Login required.");
+        return;
+    }
+
+    // Temporarily store form data in memory
+    window.tempBookingData = {
+        name: document.getElementById("name").value.trim(),
+        contact: document.getElementById("contact").value.trim(),
+        address: document.getElementById("address").value.trim(),
+        gender: document.getElementById("gender").value,
+        email: user.email,
+        service: document.getElementById("service").value,
+        shift_from: document.getElementById("shift_from").value || "Not Provided",
+        shift_to: document.getElementById("shift_to").value || "Not Provided",
+        start_date: document.getElementById("start_date").value || "Not Provided",
+        notes: document.getElementById("notes").value.trim() || "No additional notes",
+        payment_method: document.getElementById("payment_method").value
+    };
+
+    // Show QR Code
+    qrContainer.style.display = "block";
+    qrCodeDiv.innerHTML = "";
+    const upiLink = "upi://pay?pa=test@upi&pn=HouseMaid&am=500&cu=INR";
+    new QRCode(qrCodeDiv, {
+        text: upiLink,
+        width: 200,
+        height: 200
+    });
+
+    alert("Scan the QR code and enter your Transaction ID.");
+});
+
+// Confirm payment
+confirmPaymentBtn.addEventListener("click", async () => {
+    const txnId = txnIdInput.value.trim();
+    if (!txnId) {
+        alert("Enter transaction ID.");
         return;
     }
 
     try {
-        // Get the next Booking ID
         const newBookingID = await getNextBookingID();
+        const user = auth.currentUser;
 
-        // Capture form data
-        const formData = {
+        const bookingData = {
             bookingID: newBookingID,
-            userId: user.uid, // Store user ID
-            name: document.getElementById("name").value.trim(),
-            contact: document.getElementById("contact").value.trim(),
-            address: document.getElementById("address").value.trim(),
-            gender: document.getElementById("gender").value,
-            email: user.email, // Use logged-in user's email
-            service: document.getElementById("service").value,
-            shift_from: document.getElementById("shift_from").value || "Not Provided",
-            shift_to: document.getElementById("shift_to").value || "Not Provided",
-            start_date: document.getElementById("start_date").value || "Not Provided",
-            notes: document.getElementById("notes").value.trim() || "No additional notes",
-            payment_method: document.getElementById("payment_method").value,
-            payment_code: document.getElementById("payment_code").value.trim() || "No Code",
+            userId: user.uid,
+            ...window.tempBookingData,
+            payment_code: txnId,
             timestamp: new Date(),
-            status: "Pending"
+            status: "Pending Verification"
         };
 
-        // Store in Firestore with the custom ID
-        await setDoc(doc(db, "form-fill", newBookingID), formData);
+        await setDoc(doc(db, "form-fill", newBookingID), bookingData);
 
-        alert(`Form submitted successfully! Booking ID: ${newBookingID}`);
+        alert(`Booking submitted! ID: ${newBookingID}`);
         hiringForm.reset();
+        qrContainer.style.display = "none";
     } catch (error) {
-        console.error("Error submitting form:", error);
-        alert("Failed to submit. Check console for errors.");
+        console.error("Error saving booking:", error);
+        alert("Failed to save booking.");
     }
 });
