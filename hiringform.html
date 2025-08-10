@@ -6,206 +6,178 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Maid Hiring Form</title>
   <style>
-  /* ==== General Reset ==== */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+    /* ==== General Reset ==== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-body {
-  font-family: 'Segoe UI', sans-serif;
-  background-color: #e3f2fd;
-  color: #2c3e50;
-  overflow-x: hidden;
-}
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #e3f2fd;
+      color: #2c3e50;
+      overflow-x: hidden;
+    }
 
-/* ==== Navbar ==== */
-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: linear-gradient(90deg, #0288d1, #26c6da);
-  padding: 1rem 2rem;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-}
+    /* ==== Navbar ==== */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: linear-gradient(90deg, #0288d1, #26c6da);
+      padding: 1rem 2rem;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
 
-.logo img {
-  height: 50px;
-  width: 150px;
-  object-fit: contain;
-}
+    .logo img {
+      height: 50px;
+      width: 150px;
+      object-fit: contain;
+    }
 
-nav ul {
-  list-style: none;
-  display: flex;
-  gap: 1.5rem;
-}
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
+    }
 
-nav ul li a {
-  text-decoration: none;
-  font-weight: 500;
-  color: white;
-  padding: 8px 12px;
-  border-radius: 6px;
-  transition: background 0.3s, transform 0.2s;
-}
+    nav ul li a {
+      text-decoration: none;
+      font-weight: 500;
+      color: white;
+      padding: 8px 12px;
+      border-radius: 6px;
+      transition: background 0.3s, transform 0.2s;
+    }
 
-nav ul li a:hover {
-  background: rgba(255,255,255,0.2);
-  transform: translateY(-2px);
-}
+    nav ul li a:hover {
+      background: rgba(255, 255, 255, 0.2);
+      transform: translateY(-2px);
+    }
 
-/* ==== Banner ==== */
-.banner {
-  position: relative;
-  height: 40vh;
-  background: url('banner1.jpg') no-repeat center center/cover;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+    /* ==== Banner ==== */
+    .banner {
+      position: relative;
+      height: 40vh;
+      background: url('banner1.jpg') no-repeat center center/cover;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
 
-.banner::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.55);
-}
+    .banner::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.55);
+    }
 
-.banner h1 {
-  position: relative;
-  font-size: 2.8rem;
-  font-weight: bold;
-  color: white;
-  padding: 12px 24px;
-  background: rgba(0, 0, 0, 0.4);
-  border-radius: 8px;
-  z-index: 1;
-}
+    .banner h1 {
+      position: relative;
+      font-size: 2.8rem;
+      font-weight: bold;
+      color: white;
+      padding: 12px 24px;
+      background: rgba(0, 0, 0, 0.4);
+      border-radius: 8px;
+      z-index: 1;
+    }
 
-/* ==== Form Container ==== */
-.form-container {
-  max-width: 700px;
-  margin: 60px auto;
-  padding: 40px;
-  background: radial-gradient(circle at top left, rgba(255,255,255,1), rgba(230,247,255,0.8));
-  border-radius: 20px;
-  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.08);
-  position: relative;
-  overflow: hidden;
-}
+    /* ==== Form Container ==== */
+    .form-container {
+      max-width: 700px;
+      margin: 60px auto;
+      padding: 40px;
+      background: radial-gradient(circle at top left, rgba(255, 255, 255, 1), rgba(230, 247, 255, 0.8));
+      border-radius: 20px;
+      box-shadow: 0 12px 25px rgba(0, 0, 0, 0.08);
+      position: relative;
+      overflow: hidden;
+    }
 
-.form-container::before {
-  content: "";
-  position: absolute;
-  top: -50px;
-  right: -50px;
-  width: 150px;
-  height: 150px;
-  background: rgba(2,136,209,0.1);
-  border-radius: 50%;
-  z-index: 0;
-}
+    .form-container::before {
+      content: "";
+      position: absolute;
+      top: -50px;
+      right: -50px;
+      width: 150px;
+      height: 150px;
+      background: rgba(2, 136, 209, 0.1);
+      border-radius: 50%;
+      z-index: 0;
+    }
 
-.form-container .sub-heading {
-  font-size: 20px;
-  font-weight: bold;
-  margin-bottom: 20px;
-  color: #ff6f00;
-  text-align: center;
-  position: relative;
-  z-index: 1;
-}
+    .form-container .sub-heading {
+      font-size: 20px;
+      font-weight: bold;
+      margin-bottom: 20px;
+      color: #ff6f00;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
 
-form label {
-  display: block;
-  margin-top: 15px;
-  font-weight: bold;
-  position: relative;
-  z-index: 1;
-}
+    form label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+      position: relative;
+      z-index: 1;
+    }
 
-form input,
-form select,
-form textarea {
-  width: 100%;
-  padding: 12px;
-  margin-top: 5px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  font-size: 16px;
-  resize: none;
-  position: relative;
-  z-index: 1;
-}
+    form input,
+    form select,
+    form textarea {
+      width: 100%;
+      padding: 12px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 16px;
+      resize: none;
+      position: relative;
+      z-index: 1;
+    }
 
-/* ==== Payment Section ==== */
-.payment-section {
-  margin-top: 20px;
-  position: relative;
-  z-index: 1;
-}
+    /* ==== Payment Section ==== */
+    .payment-section {
+      margin-top: 20px;
+      position: relative;
+      z-index: 1;
+    }
 
-/* ==== Submit Button ==== */
-button[type="submit"] {
-  background-color: #ff6f00;
-  color: white;
-  padding: 14px 20px;
-  border: none;
-  border-radius: 8px;
-  font-size: 16px;
-  font-weight: bold;
-  margin-top: 25px;
-  cursor: pointer;
-  width: 100%;
-  transition: background 0.3s, transform 0.2s;
-  position: relative;
-  z-index: 1;
-}
+    .qr-container {
+      text-align: center;
+      margin-top: 15px;
+      display: none;
+    }
 
-button[type="submit"]:hover {
-  background-color: #e65100;
-  transform: translateY(-2px);
-}
+    /* ==== Submit Button ==== */
+    button {
+      background-color: #ff6f00;
+      color: white;
+      padding: 14px 20px;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: bold;
+      margin-top: 25px;
+      cursor: pointer;
+      width: 100%;
+      transition: background 0.3s, transform 0.2s;
+      position: relative;
+      z-index: 1;
+    }
 
-/* ==== Responsive ==== */
-@media (max-width: 768px) {
-  nav ul {
-    flex-direction: column;
-    background: linear-gradient(90deg, #0288d1, #26c6da);
-    position: absolute;
-    top: 70px;
-    right: 0;
-    width: 200px;
-    display: none;
-  }
-
-  nav ul.active {
-    display: flex;
-  }
-
-  .menu-toggle {
-    display: block;
-    cursor: pointer;
-    font-size: 1.5rem;
-    color: white;
-  }
-
-  .banner h1 {
-    font-size: 2rem;
-  }
-}
-
-@media (min-width: 769px) {
-  .menu-toggle {
-    display: none;
-  }
-}
-</style>
+    button:hover {
+      background-color: #e65100;
+      transform: translateY(-2px);
+    }
+  </style>
 </head>
 
 <body>
@@ -215,9 +187,7 @@ button[type="submit"]:hover {
       <img src="logo.png" alt="House Maid Logo" />
     </div>
     <nav>
-      <ul id="nav-links">
-        <!-- Will be dynamically inserted using JS -->
-      </ul>
+      <ul id="nav-links"></ul>
     </nav>
   </header>
 
@@ -232,13 +202,13 @@ button[type="submit"]:hover {
 
     <form id="hiring-form">
       <label for="name">Name:</label>
-      <input type="text" id="name" placeholder="Enter your name" required>
+      <input type="text" id="name" required>
 
       <label for="contact">Contact Number:</label>
-      <input type="tel" id="contact" placeholder="Enter your contact number" required>
+      <input type="tel" id="contact" required>
 
       <label for="address">Address to be hired:</label>
-      <textarea id="address" placeholder="Enter your Address" required></textarea>
+      <textarea id="address" required></textarea>
 
       <label for="gender">Gender:</label>
       <select id="gender" required>
@@ -248,7 +218,7 @@ button[type="submit"]:hover {
       </select>
 
       <label for="email">Email:</label>
-      <input type="email" id="email" placeholder="Enter Email" required>
+      <input type="email" id="email" required>
 
       <label for="service">Select Service:</label>
       <select id="service" required>
@@ -268,61 +238,73 @@ button[type="submit"]:hover {
       <input type="date" id="start_date" required>
 
       <label for="notes">Notes:</label>
-      <textarea id="notes" placeholder="Enter Some Notes"></textarea>
+      <textarea id="notes"></textarea>
 
       <div class="payment-section">
         <label for="payment_method">Payment Method:</label>
         <select id="payment_method" required>
           <option value="">Select Payment Method</option>
-          <option value="credit_card">Credit Card</option>
+          <option value="upi">UPI</option>
           <option value="paypal">PayPal</option>
-          <option value="bank_transfer">Bank Transfer</option>
         </select>
 
-        <label for="payment_code">Payment Code:</label>
-        <input type="text" id="payment_code" placeholder="Enter your payment code" required>
+        <button type="button" id="generateQR">Generate Payment QR</button>
+
+        <div class="qr-container" id="qrContainer">
+          <p>Scan this QR to pay:</p>
+          <img id="qrCode" src="" alt="QR Code" style="max-width:200px;">
+        </div>
+
+        <label for="transaction_id">Transaction ID:</label>
+        <input type="text" id="transaction_id" placeholder="Enter your transaction ID" required>
       </div>
 
       <button type="submit">SEND</button>
     </form>
   </section>
 
-  <!-- Firebase or logic JS -->
-  <script type="module" src="hiringform.js"></script>
-
-  <!-- Conditional Navbar Script -->
+  <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
   <script>
+    // Navbar
     const navLinks = document.getElementById("nav-links");
     const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
-
-    if (isLoggedIn) {
-      navLinks.innerHTML = `
-        <li><a href="index.html">Home</a></li>
-        <li><a href="#">Find a Maid</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="contact.html">Contact</a></li>
-        <li><a href="userprofile.html">User Profile</a></li>
-        <li><a href="#" id="logoutBtn">Logout</a></li>
-      `;
-    } else {
-      navLinks.innerHTML = `
-        <li><a href="index.html">Home</a></li>
-        <li><a href="#">Find a Maid</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="contact.html">Contact</a></li>
-        <li><a href="loginpage.html">Login</a></li>
-      `;
-    }
-
-    document.addEventListener("click", function (e) {
-      if (e.target && e.target.id === "logoutBtn") {
+    navLinks.innerHTML = isLoggedIn
+      ? `<li><a href="index.html">Home</a></li><li><a href="#">Find a Maid</a></li><li><a href="about.html">About</a></li><li><a href="contact.html">Contact</a></li><li><a href="userprofile.html">User Profile</a></li><li><a href="#" id="logoutBtn">Logout</a></li>`
+      : `<li><a href="index.html">Home</a></li><li><a href="#">Find a Maid</a></li><li><a href="about.html">About</a></li><li><a href="contact.html">Contact</a></li><li><a href="loginpage.html">Login</a></li>`;
+    document.addEventListener("click", e => {
+      if (e.target.id === "logoutBtn") {
         localStorage.setItem("isLoggedIn", "false");
         window.location.reload();
       }
+    });
+
+    // QR Generator
+    document.getElementById("generateQR").addEventListener("click", () => {
+      const paymentMethod = document.getElementById("payment_method").value;
+      if (!paymentMethod) {
+        alert("Please select a payment method first");
+        return;
+      }
+      const paymentData = `Payment for Maid Service via ${paymentMethod}`;
+      QRCode.toDataURL(paymentData, (err, url) => {
+        if (err) return console.error(err);
+        document.getElementById("qrCode").src = url;
+        document.getElementById("qrContainer").style.display = "block";
+      });
+    });
+
+    // Form Submission
+    document.getElementById("hiring-form").addEventListener("submit", e => {
+      e.preventDefault();
+      const txnId = document.getElementById("transaction_id").value.trim();
+      if (!txnId) {
+        alert("Please enter a transaction ID");
+        return;
+      }
+      alert("Form submitted successfully with Transaction ID: " + txnId);
+      // TODO: send to Firebase
     });
   </script>
 </body>
 
 </html>
-
-
