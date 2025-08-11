@@ -19,6 +19,36 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const auth = getAuth(app);
 
+//Nav-Links
+const navLinks = document.getElementById("nav-links");
+    const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
+
+    if (isLoggedIn) {
+      navLinks.innerHTML = `
+        <li><a href="index.html">Home</a></li>
+        <li><a href="hiringform.html">Find a Maid</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="userprofile.html">User Profile</a></li>
+        <li><a href="#" id="logoutBtn">Logout</a></li>
+      `;
+    } else {
+      navLinks.innerHTML = `
+        <li><a href="index.html">Home</a></li>
+        <li><a href="hiringform.html">Find a Maid</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="loginpage.html">Login</a></li>
+      `;
+    }
+
+    document.addEventListener("click", function (e) {
+      if (e.target && e.target.id === "logoutBtn") {
+        localStorage.setItem("isLoggedIn", "false");
+        window.location.reload();
+      }
+    });
+
 // Elements
 const hiringForm = document.querySelector("form");
 const emailField = document.getElementById("email");
@@ -169,3 +199,4 @@ confirmPaymentBtn.addEventListener("click", async () => {
         alert("Failed to save booking.");
     }
 });
+
