@@ -1,6 +1,6 @@
 // Import Firebase Firestore and Auth modules
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-app.js";
-import { getFirestore, collection, doc, setDoc, getDocs, query, orderBy, limit } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-firestore.js";
+import { getFirestore, collection, doc, setDoc, getDocs, query, orderBy, limit, where } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-firestore.js";
 import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-auth.js";
 
 // Firebase Configuration
@@ -80,6 +80,14 @@ async function getNextBookingID() {
     }
 }
 
+// Check if transaction ID exists
+async function isTxnIdUsed(txnId) {
+    const bookingsRef = collection(db, "form-fill");
+    const q = query(bookingsRef, where("payment_code", "==", txnId));
+    const snapshot = await getDocs(q);
+    return !snapshot.empty;
+}
+
 // Show QR code after form fill
 hiringForm.addEventListener("submit", async (event) => {
     event.preventDefault();
@@ -90,7 +98,13 @@ hiringForm.addEventListener("submit", async (event) => {
         return;
     }
 
-    // Temporarily store form data in memory
+    const paymentMethod = document.getElementById("payment_method").value;
+    if (!paymentMethod) {
+        alert("Select a payment method first.");
+        return;
+    }
+
+    // Temporarily store form data
     window.tempBookingData = {
         name: document.getElementById("name").value.trim(),
         contact: document.getElementById("contact").value.trim(),
@@ -102,13 +116,13 @@ hiringForm.addEventListener("submit", async (event) => {
         shift_to: document.getElementById("shift_to").value || "Not Provided",
         start_date: document.getElementById("start_date").value || "Not Provided",
         notes: document.getElementById("notes").value.trim() || "No additional notes",
-        payment_method: document.getElementById("payment_method").value
+        payment_method: paymentMethod
     };
 
     // Show QR Code
     qrContainer.style.display = "block";
     qrCodeDiv.innerHTML = "";
-    const upiLink = "upi://pay?pa=test@upi&pn=HouseMaid&am=500&cu=INR";
+    const upiLink = `upi://pay?pa=test@upi&pn=HouseMaid&am=500&cu=INR&tn=Booking-${Date.now()}`;
     new QRCode(qrCodeDiv, {
         text: upiLink,
         width: 200,
@@ -123,6 +137,11 @@ confirmPaymentBtn.addEventListener("click", async () => {
     const txnId = txnIdInput.value.trim();
     if (!txnId) {
         alert("Enter transaction ID.");
+        return;
+    }
+
+    if (await isTxnIdUsed(txnId)) {
+        alert("This Transaction ID has already been used. Please enter a valid one.");
         return;
     }
 
@@ -143,6 +162,7 @@ confirmPaymentBtn.addEventListener("click", async () => {
 
         alert(`Booking submitted! ID: ${newBookingID}`);
         hiringForm.reset();
+        txnIdInput.value = "";
         qrContainer.style.display = "none";
     } catch (error) {
         console.error("Error saving booking:", error);
