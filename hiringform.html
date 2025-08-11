@@ -156,7 +156,7 @@
       display: none;
     }
 
-    /* ==== Submit Button ==== */
+    /* ==== Buttons ==== */
     button {
       background-color: #ff6f00;
       color: white;
@@ -222,20 +222,17 @@
 
       <label for="service">Select Service:</label>
       <select id="service" required>
-        <option value="">Select Service</option>
-        <option value="cleaning">Cleaning</option>
-        <option value="cooking">Cooking</option>
-        <option value="babysitting">Babysitting</option>
+        <option value="">Loading services...</option>
       </select>
 
       <label for="shift_from">Work Shift From:</label>
-      <input type="time" id="shift_from" required>
+      <input type="time" id="shift_from">
 
       <label for="shift_to">Work Shift To:</label>
-      <input type="time" id="shift_to" required>
+      <input type="time" id="shift_to">
 
       <label for="start_date">Start Date:</label>
-      <input type="date" id="start_date" required>
+      <input type="date" id="start_date">
 
       <label for="notes">Notes:</label>
       <textarea id="notes"></textarea>
@@ -248,39 +245,22 @@
           <option value="paypal">PayPal</option>
         </select>
 
-        <button type="button" id="generateQR">Generate Payment QR</button>
-
         <div class="qr-container" id="qrContainer">
           <p>Scan this QR to pay:</p>
-          <img id="qrCode" src="" alt="QR Code" style="max-width:200px;">
+          <div id="qrcode"></div>
+          <label for="txnIdInput">Transaction ID:</label>
+          <input type="text" id="txnIdInput" placeholder="Enter your transaction ID">
+          <button type="button" id="confirmPayment">Confirm Payment</button>
         </div>
-
-        <label for="transaction_id">Transaction ID:</label>
-        <input type="text" id="transaction_id" placeholder="Enter your transaction ID" required>
       </div>
 
-      <button type="submit">SEND</button>
+      <button type="submit">Generate QR & Proceed</button>
     </form>
   </section>
-<!-- QR Code library -->
-<script src="https://cdn.jsdelivr.net/npm/qrcodejs/qrcode.min.js"></script>
-  <script>
-    // Navbar
-    const navLinks = document.getElementById("nav-links");
-    const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
-    navLinks.innerHTML = isLoggedIn
-      ? `<li><a href="index.html">Home</a></li><li><a href="#">Find a Maid</a></li><li><a href="about.html">About</a></li><li><a href="contact.html">Contact</a></li><li><a href="userprofile.html">User Profile</a></li><li><a href="#" id="logoutBtn">Logout</a></li>`
-      : `<li><a href="index.html">Home</a></li><li><a href="#">Find a Maid</a></li><li><a href="about.html">About</a></li><li><a href="contact.html">Contact</a></li><li><a href="loginpage.html">Login</a></li>`;
-    document.addEventListener("click", e => {
-      if (e.target.id === "logoutBtn") {
-        localStorage.setItem("isLoggedIn", "false");
-        window.location.reload();
-      }
-    });
-  </script>
-<!-- Your Firebase booking logic -->
-<script type="module" src="hiringform.js"></script>
+
+  <!-- QR Code library -->
+  <script src="https://cdn.jsdelivr.net/npm/qrcodejs/qrcode.min.js"></script>
+  <!-- Firebase logic -->
+  <script type="module" src="hiringform.js"></script>
 </body>
 </html>
-
-
