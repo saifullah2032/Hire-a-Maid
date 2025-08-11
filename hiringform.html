@@ -10,14 +10,74 @@
       background-color: #e3f2fd;
       color: #2c3e50;
     }
+/* ==== Navbar ==== */
     header {
       display: flex;
       justify-content: space-between;
       align-items: center;
       background: linear-gradient(90deg, #0288d1, #26c6da);
       padding: 1rem 2rem;
-      color: white;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
     }
+
+    .logo img {
+      height: 50px;
+      width: 150px;
+      object-fit: contain;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      font-weight: 500;
+      color: white;
+      padding: 8px 12px;
+      border-radius: 6px;
+      transition: background 0.3s, transform 0.2s;
+    }
+
+    nav ul li a:hover {
+      background: rgba(255, 255, 255, 0.2);
+      transform: translateY(-2px);
+    }
+
+    /* ==== Banner ==== */
+    .banner {
+      position: relative;
+      height: 40vh;
+      background: url('banner1.jpg') no-repeat center center/cover;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .banner::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.55);
+    }
+
+    .banner h1 {
+      position: relative;
+      font-size: 2.8rem;
+      font-weight: bold;
+      color: white;
+      padding: 12px 24px;
+      background: rgba(0, 0, 0, 0.4);
+      border-radius: 8px;
+      z-index: 1;
+    }
+
+
     .form-container {
       max-width: 700px;
       margin: 40px auto;
@@ -51,16 +111,24 @@
       text-align: center;
     }
     #qrcode { margin-top: 10px; }
+
   </style>
 </head>
 <body>
+  <!-- Navigation Bar -->
+  <header>
+    <div class="logo">
+      <img src="logo.png" alt="House Maid Logo" />
+    </div>
+    <nav>
+      <ul id="nav-links"></ul>
+    </nav>
+  </header>
 
-<header>
-  <div class="logo"><img src="logo.png" alt="Logo" style="height:50px;"></div>
-  <nav>
-    <ul id="nav-links"></ul>
-  </nav>
-</header>
+  <!-- Banner Section -->
+  <section class="banner">
+    <h1>Hiring Form</h1>
+  </section>
 
 <section class="form-container">
   <h2>Post Requirement Here</h2>
@@ -124,3 +192,4 @@
 <script type="module" src="hiringform.js"></script>
 </body>
 </html>
+
