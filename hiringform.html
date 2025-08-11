@@ -1,16 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Maid Hiring Form</title>
   <style>
+    /* ==== General Reset ==== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
     body {
       font-family: 'Segoe UI', sans-serif;
       background-color: #e3f2fd;
       color: #2c3e50;
+      overflow-x: hidden;
     }
-/* ==== Navbar ==== */
+
+    /* ==== Navbar ==== */
     header {
       display: flex;
       justify-content: space-between;
@@ -77,43 +87,99 @@
       z-index: 1;
     }
 
-
+    /* ==== Form Container ==== */
     .form-container {
       max-width: 700px;
-      margin: 40px auto;
-      background: white;
-      padding: 20px;
-      border-radius: 12px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      margin: 60px auto;
+      padding: 40px;
+      background: radial-gradient(circle at top left, rgba(255, 255, 255, 1), rgba(230, 247, 255, 0.8));
+      border-radius: 20px;
+      box-shadow: 0 12px 25px rgba(0, 0, 0, 0.08);
+      position: relative;
+      overflow: hidden;
     }
-    label { margin-top: 10px; display: block; font-weight: bold; }
-    input, select, textarea {
-      width: 100%;
-      padding: 10px;
-      margin-top: 5px;
-      border-radius: 6px;
-      border: 1px solid #ccc;
-    }
-    button {
-      margin-top: 15px;
-      padding: 12px;
-      background-color: #ff6f00;
-      border: none;
-      color: white;
-      font-weight: bold;
-      border-radius: 6px;
-      cursor: pointer;
-    }
-    button:hover { background-color: #e65100; }
-    #qrContainer {
-      margin-top: 20px;
-      display: none;
-      text-align: center;
-    }
-    #qrcode { margin-top: 10px; }
 
+    .form-container::before {
+      content: "";
+      position: absolute;
+      top: -50px;
+      right: -50px;
+      width: 150px;
+      height: 150px;
+      background: rgba(2, 136, 209, 0.1);
+      border-radius: 50%;
+      z-index: 0;
+    }
+
+    .form-container .sub-heading {
+      font-size: 20px;
+      font-weight: bold;
+      margin-bottom: 20px;
+      color: #ff6f00;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    form label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+      position: relative;
+      z-index: 1;
+    }
+
+    form input,
+    form select,
+    form textarea {
+      width: 100%;
+      padding: 12px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 16px;
+      resize: none;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ==== Payment Section ==== */
+    .payment-section {
+      margin-top: 20px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .qr-container {
+      text-align: center;
+      margin-top: 15px;
+      display: none;
+    }
+
+    /* ==== Submit Button ==== */
+    button {
+      background-color: #ff6f00;
+      color: white;
+      padding: 14px 20px;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: bold;
+      margin-top: 25px;
+      cursor: pointer;
+      width: 100%;
+      transition: background 0.3s, transform 0.2s;
+      position: relative;
+      z-index: 1;
+    }
+
+    button:hover {
+      background-color: #e65100;
+      transform: translateY(-2px);
+    }
   </style>
 </head>
+
 <body>
   <!-- Navigation Bar -->
   <header>
@@ -130,66 +196,91 @@
     <h1>Hiring Form</h1>
   </section>
 
-<section class="form-container">
-  <h2>Post Requirement Here</h2>
-  <form id="hiring-form">
-    <label for="name">Name:</label>
-    <input type="text" id="name" required>
+  <!-- Form Section -->
+  <section class="form-container">
+    <p class="sub-heading">Post Requirement Here</p>
 
-    <label for="contact">Contact Number:</label>
-    <input type="tel" id="contact" required>
+    <form id="hiring-form">
+      <label for="name">Name:</label>
+      <input type="text" id="name" required>
 
-    <label for="address">Address:</label>
-    <textarea id="address" required></textarea>
+      <label for="contact">Contact Number:</label>
+      <input type="tel" id="contact" required>
 
-    <label for="gender">Gender:</label>
-    <select id="gender" required>
-      <option value="">Select Gender</option>
-      <option value="male">Male</option>
-      <option value="female">Female</option>
-    </select>
+      <label for="address">Address to be hired:</label>
+      <textarea id="address" required></textarea>
 
-    <label for="email">Email:</label>
-    <input type="email" id="email" required>
+      <label for="gender">Gender:</label>
+      <select id="gender" required>
+        <option value="">Select Gender</option>
+        <option value="male">Male</option>
+        <option value="female">Female</option>
+      </select>
 
-    <label for="service">Select Service:</label>
-    <select id="service" required></select>
+      <label for="email">Email:</label>
+      <input type="email" id="email" required>
 
-    <label for="shift_from">Work Shift From:</label>
-    <input type="time" id="shift_from">
+      <label for="service">Select Service:</label>
+      <select id="service" required>
+        <option value="">Select Service</option>
+        <option value="cleaning">Cleaning</option>
+        <option value="cooking">Cooking</option>
+        <option value="babysitting">Babysitting</option>
+      </select>
 
-    <label for="shift_to">Work Shift To:</label>
-    <input type="time" id="shift_to">
+      <label for="shift_from">Work Shift From:</label>
+      <input type="time" id="shift_from" required>
 
-    <label for="start_date">Start Date:</label>
-    <input type="date" id="start_date">
+      <label for="shift_to">Work Shift To:</label>
+      <input type="time" id="shift_to" required>
 
-    <label for="notes">Notes:</label>
-    <textarea id="notes"></textarea>
+      <label for="start_date">Start Date:</label>
+      <input type="date" id="start_date" required>
 
-    <label for="payment_method">Payment Method:</label>
-    <select id="payment_method" required>
-      <option value="">Select Payment Method</option>
-      <option value="upi">UPI</option>
-      <option value="paypal">PayPal</option>
-    </select>
+      <label for="notes">Notes:</label>
+      <textarea id="notes"></textarea>
 
-    <button type="submit">Generate Payment QR</button>
+      <div class="payment-section">
+        <label for="payment_method">Payment Method:</label>
+        <select id="payment_method" required>
+          <option value="">Select Payment Method</option>
+          <option value="upi">UPI</option>
+          <option value="paypal">PayPal</option>
+        </select>
 
-    <div id="qrContainer">
-      <p>Scan the QR code below to make payment:</p>
-      <div id="qrcode"></div>
-      <label for="txnIdInput">Transaction ID:</label>
-      <input type="text" id="txnIdInput" placeholder="Enter Transaction ID">
-      <button type="button" id="confirmPayment">Confirm Payment</button>
-    </div>
-  </form>
-</section>
+        <button type="button" id="generateQR">Generate Payment QR</button>
 
+        <div class="qr-container" id="qrContainer">
+          <p>Scan this QR to pay:</p>
+          <img id="qrCode" src="" alt="QR Code" style="max-width:200px;">
+        </div>
+
+        <label for="transaction_id">Transaction ID:</label>
+        <input type="text" id="transaction_id" placeholder="Enter your transaction ID" required>
+      </div>
+
+      <button type="submit">SEND</button>
+    </form>
+  </section>
 <!-- QR Code library -->
 <script src="https://cdn.jsdelivr.net/npm/qrcodejs/qrcode.min.js"></script>
+  <script>
+    // Navbar
+    const navLinks = document.getElementById("nav-links");
+    const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
+    navLinks.innerHTML = isLoggedIn
+      ? `<li><a href="index.html">Home</a></li><li><a href="#">Find a Maid</a></li><li><a href="about.html">About</a></li><li><a href="contact.html">Contact</a></li><li><a href="userprofile.html">User Profile</a></li><li><a href="#" id="logoutBtn">Logout</a></li>`
+      : `<li><a href="index.html">Home</a></li><li><a href="#">Find a Maid</a></li><li><a href="about.html">About</a></li><li><a href="contact.html">Contact</a></li><li><a href="loginpage.html">Login</a></li>`;
+    document.addEventListener("click", e => {
+      if (e.target.id === "logoutBtn") {
+        localStorage.setItem("isLoggedIn", "false");
+        window.location.reload();
+      }
+    });
+  </script>
 <!-- Your Firebase booking logic -->
 <script type="module" src="hiringform.js"></script>
 </body>
 </html>
+
 
