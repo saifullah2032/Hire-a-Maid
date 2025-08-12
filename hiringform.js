@@ -83,16 +83,21 @@ async function fetchCategories() {
         const querySnapshot = await getDocs(categoryCollection);
         serviceDropdown.innerHTML = '<option value="">Select a Service</option>';
         querySnapshot.forEach((docSnap) => {
-            const category = docSnap.data().name;
+            const data = docSnap.data();
+            const category = data.name;
+            const cost = data.cost;
+
             const option = document.createElement("option");
-            option.value = category;
-            option.textContent = category;
+            option.value = category; // you could also store an object/ID here
+            option.textContent = `${category} - ₹${cost}`;
+            option.dataset.cost = cost; // store cost in data attribute for later use
             serviceDropdown.appendChild(option);
         });
     } catch (error) {
         console.error("Error fetching categories:", error);
     }
 }
+
 
 // Generate next booking ID
 async function getNextBookingID() {
@@ -199,4 +204,5 @@ confirmPaymentBtn.addEventListener("click", async () => {
         alert("Failed to save booking.");
     }
 });
+
 
